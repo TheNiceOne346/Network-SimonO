@@ -27,10 +27,10 @@ public class Bullet : NetworkBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                collision.gameObject.GetComponent<HealthSystem>().TakeDamage(20); // Apply damage to the player
+                collision.gameObject.GetComponent<HealthSystem>().TakeDamage(20); 
             }
 
-            // Despawn the bullet on the network
+            
             NetworkObject.Despawn();
         }
     }

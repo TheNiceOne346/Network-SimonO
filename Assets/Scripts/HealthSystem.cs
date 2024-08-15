@@ -39,8 +39,8 @@ public class HealthSystem : NetworkBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            TakeDamage(20); // Assume each bullet deals 20 damage
-            Destroy(collision.gameObject); // Destroy the bullet after it hits
+            TakeDamage(20); 
+            Destroy(collision.gameObject); 
         }
     }
 }

@@ -13,9 +13,9 @@ public class Player : NetworkBehaviour
     NetworkVariable<Vector3> playerScale = new NetworkVariable<Vector3>();
 
     [SerializeField] float Speed;
-    [SerializeField] GameObject bulletPrefab; // Reference to bullet prefab
-    [SerializeField] Transform bulletSpawnPoint; // Point where bullet spawns
-    [SerializeField] float bulletSpeed = 10f; // Speed of the bullet
+    [SerializeField] GameObject bulletPrefab; 
+    [SerializeField] Transform bulletSpawnPoint; 
+    [SerializeField] float bulletSpeed = 10f; 
 
     public Transform spawnPosition;
     public GameObject playerPrefab;
@@ -30,7 +30,7 @@ public class Player : NetworkBehaviour
         if (inputReader != null && IsLocalPlayer)
         {
             inputReader.MoveEvent += OnMove;
-            inputReader.ShootEvent += OnShoot; // Subscribe to the Shoot event
+            inputReader.ShootEvent += OnShoot; 
         }
     }
 
@@ -49,7 +49,7 @@ public class Player : NetworkBehaviour
 
     private void OnMove(Vector2 input)
     {
-        // Kalla på server RPC för att flytta spelaren
+       
         MoveServerRpc(input);
 
       
@@ -71,15 +71,15 @@ public class Player : NetworkBehaviour
     {
         Vector2 input = (Vector3)moveInput.Value;
 
-        // Hantera spelarens vändning lokalt
+       
         if (input.x > 0)
         {
-            // Vänd åt höger
+            
             playerScale.Value = new Vector3(0.934f, 0.47f, 1);
         }
         else if (input.x < 0)
         {
-            // Vänd åt vänster
+           
             playerScale.Value = new Vector3(-0.934f, 0.47f, 1);
         }
     }
@@ -107,17 +107,17 @@ public class Player : NetworkBehaviour
         NetworkObject networkObJ = bullet.GetComponent<NetworkObject>();
         networkObJ.Spawn();
 
-        // Notify all clients to move the bullet
+        
         float direction;
 
         if (transform.localScale.x > 0)
         {
-            // Player is facing right
+           
             direction = 1;
         }
         else
         {
-            // Player is facing left
+           
             direction = -1;
         }
 
